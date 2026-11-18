@@ -2,7 +2,7 @@ Summary: A network traffic monitoring tool
 Name: tcpdump
 Epoch: 14
 Version: 4.9.3
-Release: 3%{?dist}
+Release: 3.1%{?dist}
 License: BSD with advertising
 URL: http://www.tcpdump.org
 Group: Applications/Internet
@@ -31,6 +31,8 @@ Patch0016:      0016-Don-t-print-out-we-dropped-root-we-are-always-droppi.patch
 Patch0017:      0017-Make-default-capture-buffer-size-bigger.patch
 Patch0018:      0018-Disable-test-with-unsupported-link-type.patch
 Patch0019:      0019-Disable-tests-that-break-on-C7-pcap.patch
+Patch0020:      0020-CVE-2021-41043.patch
+Patch0021:      0021-CVE-2018-16301.patch
 
 %define tcpslice_dir tcpslice-1.2a3
 
@@ -96,6 +98,10 @@ exit 0
 %{_mandir}/man8/tcpdump.8*
 
 %changelog
+* Wed Nov 18 2026 Jeff Uphoff <juphoff@ciq.com> - 14:4.9.3-3.1
+- Fix CVE-2021-41043: use-after-free in tcpslice extract_slice()
+- Fix CVE-2018-16301: reject oversized -F files in read_infile()
+
 * Tue Nov 12 2024 Jonathan Dieter <jdieter@ciq.com> - 14:4.9.3-3
 - Rebase to 4.9.3 from CentOS 8 to fix multiple CVEs:
   * CVE-2017-16808
